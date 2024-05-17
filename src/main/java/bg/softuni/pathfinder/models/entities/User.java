@@ -3,6 +3,8 @@ package bg.softuni.pathfinder.models.entities;
 import bg.softuni.pathfinder.models.enums.LevelEnum;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -24,6 +26,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+
+    @Column(nullable = false)
+    private int age;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
@@ -31,6 +37,7 @@ public class User {
     private LevelEnum level;
 
     public User() {
+        this.roles = new HashSet<>();
     }
 
     public Long getId() {
@@ -89,5 +96,18 @@ public class User {
     public User setLevel(LevelEnum level) {
         this.level = level;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, email);
     }
 }

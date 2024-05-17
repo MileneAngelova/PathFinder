@@ -2,7 +2,6 @@ package bg.softuni.pathfinder.models.entities;
 
 import bg.softuni.pathfinder.models.enums.RoleNameEnum;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -14,9 +13,13 @@ public class Role {
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(unique = true)
     private RoleNameEnum name;
 
     public Role() {
+    }
+
+    public Role(RoleNameEnum roleEnum) {
     }
 
     public Long getId() {

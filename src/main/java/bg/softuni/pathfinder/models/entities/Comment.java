@@ -2,7 +2,6 @@ package bg.softuni.pathfinder.models.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,8 +25,8 @@ public class Comment {
     private User author;
 
     @ManyToOne
-    @JoinColumn(name = "rout_id")
-    private Rout rout;
+    @JoinColumn(name = "route_id")
+    private Route route;
 
     public Comment() {
     }
@@ -68,12 +67,12 @@ public class Comment {
         return this;
     }
 
-    public Rout getRout() {
-        return rout;
+    public Route getRout() {
+        return route;
     }
 
-    public void setRout(Rout rout) {
-        this.rout = rout;
+    public void setRout(Route rout) {
+        this.route = rout;
     }
 
     public User getAuthor() {

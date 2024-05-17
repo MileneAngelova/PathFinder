@@ -20,8 +20,8 @@ public class Picture {
 
 
     @ManyToOne
-    @JoinColumn(name = "rout_id")
-    private Rout rout;
+    @JoinColumn(name = "route_id")
+    private Route route;
 
     public Picture() {
     }
@@ -53,12 +53,12 @@ public class Picture {
         return this;
     }
 
-    public Rout getRout() {
-        return rout;
+    public Route getRout() {
+        return route;
     }
 
-    public void setRout(Rout rout) {
-        this.rout = rout;
+    public void setRout(Route rout) {
+        this.route = rout;
     }
 
     public User getAuthor() {
