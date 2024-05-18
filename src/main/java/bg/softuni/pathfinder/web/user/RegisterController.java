@@ -1,6 +1,5 @@
 package bg.softuni.pathfinder.web.user;
 
-import bg.softuni.pathfinder.models.dtos.LoginDTO;
 import bg.softuni.pathfinder.models.dtos.RegisterDTO;
 import bg.softuni.pathfinder.sevices.UserService;
 import jakarta.validation.Valid;
@@ -21,7 +20,7 @@ public class RegisterController {
     }
 
     @ModelAttribute("registerModel")
-    public RegisterDTO initLogin() {
+    public RegisterDTO initRegister() {
         return new RegisterDTO();
     }
 
@@ -34,12 +33,12 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String login(@Valid RegisterDTO registerModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String register(@Valid RegisterDTO registerModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (this.userService.isLoggedIn()) {
             return "redirect:/home";
         }
 
-        if (bindingResult.hasErrors() || this.userService.userExist(registerModel.getUsername(), registerModel.getPassword())) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerModel", registerModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerModel", bindingResult);
 

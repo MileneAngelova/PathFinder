@@ -27,7 +27,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(RegisterDTO registerDTO) {
+        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            throw new RuntimeException("Passwords should match");
+        }
+
         Optional<User> optUser = this.userRepository.findByEmailAndPassword(registerDTO.getEmail(), registerDTO.getPassword());
+
         if (optUser.isEmpty()) {
             User newUser = this.modelMapper.map(registerDTO, User.class);
             this.userRepository.save(newUser);

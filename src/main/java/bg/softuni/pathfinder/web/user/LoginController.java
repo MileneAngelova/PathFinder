@@ -35,6 +35,7 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginModel", bindingResult);
              return "redirect:/login";
         }
+
         this.userService.login(loginModel);
         return "redirect:/home";
     }

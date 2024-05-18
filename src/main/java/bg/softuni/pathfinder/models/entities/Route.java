@@ -34,6 +34,12 @@ public class Route {
     @ManyToMany
     private Set<Category> categories;
 
+    @OneToMany(mappedBy = "route", targetEntity = Picture.class, fetch = FetchType.EAGER)
+    private Set<Picture> pictures;
+
+    @OneToMany(targetEntity = Comment.class, mappedBy = "route", cascade = CascadeType.ALL)
+    private Set<Comment> comments;
+
     public User getAuthor() {
         return author;
     }
@@ -87,6 +93,24 @@ public class Route {
 
     public Route setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+        return this;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public Route setComments(Set<Comment> comments) {
+        this.comments = comments;
+        return this;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public Route setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
         return this;
     }
 }
