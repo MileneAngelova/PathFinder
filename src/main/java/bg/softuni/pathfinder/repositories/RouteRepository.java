@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RouteRepository extends JpaRepository<Route, Long> {
 
     @Query("select r from Route r Order By size(r.comments) desc")
     List<Route> findMostCommented();
+
+    @Override
+    Optional<Route> findById(Long aLong);
 }
